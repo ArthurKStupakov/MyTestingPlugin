@@ -1,0 +1,8 @@
+language: 'en'
+
+messages:
+  en:
+    join:
+      - '&a Hello, {player}!'
+      - '&a {player}, hi!'
+      - '&a Welcome, {player}!'

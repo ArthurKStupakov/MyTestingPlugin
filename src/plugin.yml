@@ -1,0 +1,18 @@
+name: MyTestingPlugin
+version: 0.1
+author: ArteZe
+main: Test.main.MyTestingPlugin
+api-version: 1.16
+commands:
+  info:
+    description: Info about player
+    usage: /info <player>
+  heal:
+    description: Heal player
+    usage: /heal
+  putmeinfire:
+    description: If a spark from your eyes fell right into your pants...
+    usage: enter /putmeinfire holding a bucket of lava.
+  myplugin:
+    description: plugin actions for admin
+    usage: enter /myplugin config reset for reset configs
