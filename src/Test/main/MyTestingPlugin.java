@@ -29,6 +29,7 @@ public class MyTestingPlugin extends JavaPlugin{
             saveDefaultConfig();
             getLogger().info("Done!");
         }
+        reloadConfig();
         active_lang = getConfig().getString("language");
 
         File players = new File(getDataFolder() + File.separator + "players.yml");
@@ -67,11 +68,15 @@ public class MyTestingPlugin extends JavaPlugin{
     }
 
     private void craft(){
+
+        String item_name = messageCorrect(getConfig().getString("messages." + active_lang + ".teleport_item_name"));
+        String item_lore = messageCorrect(getConfig().getString("messages." + active_lang + ".teleport_item_lore"));
+
         ItemStack item = new ItemStack(Material.ENDER_EYE);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(ChatColor.GREEN + "Teleporter");
+        meta.setDisplayName(item_name);
         List<String> lore = new ArrayList<String>();
-        lore.add("Ender-Teleport");
+        lore.add(item_lore);
         meta.setLore(lore);
         item.setItemMeta(meta);
 

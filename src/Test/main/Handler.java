@@ -31,9 +31,6 @@ public class Handler implements Listener{
     @EventHandler
     public void join(PlayerJoinEvent event){
         Player player = event.getPlayer();
-
-        //String joinMessage = plugin.getConfig().getString("messages." + plugin.active_lang + ".join");
-
         List<String> joinMessages = plugin.getConfig().getStringList("messages." + plugin.active_lang + ".join");
 
         Random rand = new Random();
@@ -58,13 +55,6 @@ public class Handler implements Listener{
     }
 
     @EventHandler
-    public void breaking(BlockBreakEvent event){
-        Player player = event.getPlayer();
-        Block block = event.getBlock();
-        player.sendMessage("Блок сломан: ["+ block.getX() + "," + block.getY() + "," + block.getZ() + "]");
-    }
-
-    @EventHandler
     public void chest_placed(PlayerInteractEvent event){
         Action action = event.getAction();
         if (action != Action.RIGHT_CLICK_BLOCK) return;
@@ -73,7 +63,8 @@ public class Handler implements Listener{
             if (player.isSneaking()) return;
             else if(event.getClickedBlock().getType() == Material.CHEST){
                 event.setCancelled(true);
-                player.sendMessage("Убери сундук из рук, мен");
+                String message = plugin.getConfig().getString("messages." + plugin.active_lang + ".chest_setter");
+                player.sendMessage(message);
             }
         }
         return;

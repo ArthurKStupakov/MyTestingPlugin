@@ -18,18 +18,22 @@ public class CommandHeal implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if(strings.length > 0) return false;
         if (!(commandSender instanceof Player)){
-            commandSender.sendMessage("Only for players!");
+
+            String message = plugin.getConfig().getString("messages." + plugin.active_lang + ".only_for_players");
+            commandSender.sendMessage(message);
             return true;
         }
 
         if (!commandSender.hasPermission("MyTestPlugin.heal")) {
-            commandSender.sendMessage(ChatColor.RED + "You dont have permisson!");
+            String message = plugin.getConfig().getString("messages." + plugin.active_lang + ".permission_error");
+            commandSender.sendMessage(message);
             return true;
         }
 
         Player player = (Player) commandSender;
         player.setHealth(20);
-        player.sendMessage(ChatColor.GOLD + "Be Happy!");
+        String message = plugin.getConfig().getString("messages." + plugin.active_lang + ".command_done");
+        player.sendMessage(message);
 
         return true;
     }

@@ -1,4 +1,4 @@
-language: 'en'
+language: 'ru'
 
 messages:
   en:
@@ -6,3 +6,28 @@ messages:
       - '&a Hello, {player}!'
       - '&a {player}, hi!'
       - '&a Welcome, {player}!'
+    permission_error: 'You dont have permisson!'
+    only_for_players: 'Only for players!'
+    command_done: '&4 Be Happy!'
+    player_offline: '{player} is not online'
+    configs_reloaded: 'Configs reloaded.'
+    fire_suicide: '{player} set himself on fire because he thinks he is right!'
+    teleport_item_name: '&6 Teleporter'
+    teleport_item_lore: '&9 Ender-Teleport'
+    teleport_item_wall_error: 'The ground is too heavy!'
+    chest_setter: 'Take the chest out of your hands, man...'
+  ru:
+    join:
+      - '&a Привет, {player}!'
+      - '&a {player}, здаров!'
+      - '&a Добро пожаловать, {player}!'
+    permission_error: 'У тебя нет прав на это!'
+    only_for_players: 'Only for players!'
+    command_done: '&4 Готово!'
+    player_offline: '{player} нет в сети'
+    configs_reloaded: 'Настройки обновлены.'
+    fire_suicide: '{player} поджег себя, потому что считает себя правым!'
+    teleport_item_name: '&6 Телепортер'
+    teleport_item_lore: '&9 Эндер-телепорт'
+    teleport_item_wall_error: 'Там нет для тебя места!'
+    chest_setter: 'Чел, убери сундук из рук'

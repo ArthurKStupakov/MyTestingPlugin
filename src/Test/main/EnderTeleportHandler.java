@@ -33,11 +33,18 @@ public class EnderTeleportHandler implements Listener {
         if(event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         if(event.getPlayer().getInventory().getItemInMainHand().getType() != Material.ENDER_EYE) return;
         Player player = event.getPlayer();
+
+        if(player.getCooldown(Material.ENDER_EYE)!= 0) return;
+
         ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         if(!item.getItemMeta().hasDisplayName()) return;
         if(!item.getItemMeta().hasLore()) return;
-        if(!item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Teleporter")) return;
-        if(!item.getItemMeta().getLore().get(0).equals("Ender-Teleport")) return;
+
+        String item_name = plugin.getConfig().getString("messages." + plugin.active_lang + ".teleport_item_name");
+        String item_lore = plugin.getConfig().getString("messages." + plugin.active_lang + ".teleport_item_lore");
+
+        if(!item.getItemMeta().getDisplayName().equals(plugin.messageCorrect(item_name))) return;
+        if(!item.getItemMeta().getLore().get(0).equals(plugin.messageCorrect(item_lore))) return;
 
         event.setCancelled(true);
         teleport(player);
@@ -50,6 +57,7 @@ public class EnderTeleportHandler implements Listener {
     }
 
     private void teleport(Player player){
+
         float range = 2;
         float vertical_mod = 1;
 
@@ -64,24 +72,27 @@ public class EnderTeleportHandler implements Listener {
 
         x *= range;
         double y = pitch * (range + vertical_mod);
-        y *= range;
+        z *= range;
 
         if (y != 0.0) {
             x = 0.0;
             z = 0.0;
         }
 
-        location.setX( Math.round(location.getX()) + x );
-        location.setY( Math.round(location.getY()) + y );
-        location.setZ( Math.round(location.getZ()) + z );
+        location.setX(location.getX() + x );
+        location.setY(location.getY() + y );
+        location.setZ(location.getZ() + z );
 
         if(blocked(location)) {
-            player.sendMessage("Слишком плотная стена");
+            String message = plugin.getConfig().getString("messages." + plugin.active_lang + ".teleport_item_wall_error");
+            player.sendMessage(message);
             return;
         }
+
         removeItem(player);
         setEffect(player);
         player.teleport(location);
+        player.setCooldown(Material.ENDER_EYE, 40);
         return;
 
     }

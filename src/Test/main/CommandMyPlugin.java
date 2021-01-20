@@ -17,7 +17,8 @@ public class CommandMyPlugin implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (!commandSender.hasPermission("MyTestPlugin.admin")){
-            commandSender.sendMessage(ChatColor.RED + "You dont have permisson!");
+            String message = plugin.getConfig().getString("messages." + plugin.active_lang + ".permission_error");
+            commandSender.sendMessage(message);
             return true;
         }
 
@@ -31,7 +32,9 @@ public class CommandMyPlugin implements CommandExecutor {
         if(target.equalsIgnoreCase("config")){
             if(action.equalsIgnoreCase("reset")){
                 plugin.reloadConfig();
-                commandSender.sendMessage("Configs reloaded.");
+                plugin.active_lang = plugin.getConfig().getString("language");
+                String message = plugin.getConfig().getString("messages." + plugin.active_lang + ".configs_reloaded");
+                commandSender.sendMessage(message);
                 return true;
             }
             return false;

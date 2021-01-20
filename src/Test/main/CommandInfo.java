@@ -17,15 +17,17 @@ public class CommandInfo implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (!commandSender.hasPermission("MyTestPlugin.info")){
-            commandSender.sendMessage(ChatColor.RED + "You dont have permisson!");
+        if (!commandSender.hasPermission("MyTestPlugin.private_info")){
+            String message = plugin.getConfig().getString("messages." + plugin.active_lang + ".permission_error");
+            commandSender.sendMessage(message);
             return true;
         }
         if(strings.length == 0) return false;
         String name = strings[0];
         Player player = Bukkit.getPlayer(name);
         if (player==null){
-            commandSender.sendMessage(name + " is not online");
+            String message = plugin.getConfig().getString("messages." + plugin.active_lang + ".player_offline");
+            commandSender.sendMessage(plugin.messageCorrect(message, name));
             return true;
         }
         commandSender.sendMessage("IP: " + player.getAddress().getAddress());
