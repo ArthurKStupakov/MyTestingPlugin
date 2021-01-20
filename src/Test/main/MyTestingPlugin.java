@@ -54,7 +54,7 @@ public class MyTestingPlugin extends JavaPlugin{
         getCommand("myplugin").setExecutor(new CommandMyPlugin(this));
         getCommand("info").setExecutor(new CommandInfo(this));
         getCommand("heal").setExecutor(new CommandHeal(this));
-        getCommand("putmeinfire").setExecutor(new CommendPutMeInFire(this));
+        getCommand("putmeinfire").setExecutor(new CommandPutMeInFire(this));
         craft();
 
 
