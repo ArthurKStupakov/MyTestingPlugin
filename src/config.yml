@@ -1,4 +1,5 @@
 language: 'ru'
+radio_time_rate: 40000
 
 messages:
   en:
@@ -16,6 +17,7 @@ messages:
     teleport_item_lore: '&9 Ender-Teleport'
     teleport_item_wall_error: 'The ground is too heavy!'
     chest_setter: 'Take the chest out of your hands, man...'
+    broadcast_radio: []
   ru:
     join:
       - '&a Привет, {player}!'
@@ -31,3 +33,4 @@ messages:
     teleport_item_lore: '&9 Эндер-телепорт'
     teleport_item_wall_error: 'Там нет для тебя места!'
     chest_setter: 'Чел, убери сундук из рук'
+    broadcast_radio: []

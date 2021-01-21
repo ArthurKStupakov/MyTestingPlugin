@@ -126,7 +126,10 @@ public class Handler implements Listener {
                 Runnable runnableForChangeColoredBlock = new Runnable() {
                     @Override
                     public void run() {
-                        if (current_location.getBlock().getType() == Material.AIR) Bukkit.getScheduler().cancelTask(id[0]);
+                        if (current_location.getBlock().getType() == Material.AIR){
+                            Bukkit.getScheduler().cancelTask(id[0]);
+                            return;
+                        }
 
                         for (String color : colors) {
                             int id = block_name[0].indexOf(color);

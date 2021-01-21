@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -13,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 
 public class MyTestingPlugin extends JavaPlugin{
@@ -56,6 +58,43 @@ public class MyTestingPlugin extends JavaPlugin{
         craft();
 
 
+        Runnable runnableBroadcastRadio = new Runnable() {
+            @Override
+            public void run() {
+                while(isEnabled()){
+                    List<String> radioMessages = getConfig().getStringList("messages." + active_lang + ".broadcast_radio");
+                    if (radioMessages.size() > 0 ) {
+
+
+                        for (Player player : Bukkit.getOnlinePlayers()) {
+
+                            radioMessages = getConfig().getStringList("messages." + active_lang + ".broadcast_radio");
+                            Random rand = new Random();
+                            String randMessage = radioMessages.get(rand.nextInt(radioMessages.size()));
+
+                            player.sendMessage(messageCorrect(randMessage, player.getName()));
+                            log.info(randMessage);
+                        }
+                        try {
+                            Thread.sleep(getConfig().getInt("radio_time_rate"));
+                        }
+                        catch (InterruptedException exception) {
+                            exception.printStackTrace();
+                        }
+                    }
+
+                    try {
+                        Thread.sleep(1000);
+                    }
+                    catch (InterruptedException exception) {
+                        exception.printStackTrace();
+                    }
+
+                }
+            }
+
+        };
+        Bukkit.getScheduler().runTaskAsynchronously(this,runnableBroadcastRadio);
 
     }
 

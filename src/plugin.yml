@@ -1,5 +1,5 @@
 name: MyTestingPlugin
-version: 0.1
+version: 0.2
 author: ArteZe
 main: Test.main.MyTestingPlugin
 api-version: 1.16

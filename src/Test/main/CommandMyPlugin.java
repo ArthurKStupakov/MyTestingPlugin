@@ -5,7 +5,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandMyPlugin implements CommandExecutor {
     private MyTestingPlugin plugin;
@@ -22,9 +29,7 @@ public class CommandMyPlugin implements CommandExecutor {
             return true;
         }
 
-        if(!(strings.length == 2)){
-            return false;
-        }
+        if (strings.length < 2) return false;
 
         String target = strings[0];
         String action = strings[1];
@@ -37,9 +42,58 @@ public class CommandMyPlugin implements CommandExecutor {
                 commandSender.sendMessage(message);
                 return true;
             }
-            return false;
+            return false; //if target == config && action != reset
         }
 
-        return false;
+        if(target.equalsIgnoreCase("radio")){
+
+            if(action.equalsIgnoreCase("add")){
+                int countargs = strings.length;
+                String message = "";
+
+                for (int i = 2; i < countargs; i++){
+                    message = message + " " + strings[i];
+                }
+
+                File config = new File(plugin.getDataFolder() + File.separator + "config.yml");
+                FileConfiguration msg = YamlConfiguration.loadConfiguration(config);
+
+                List<String> list = msg.getStringList("messages." + plugin.active_lang + ".broadcast_radio");
+                if (!list.contains(message)) {
+                    list.add(message);
+
+                    msg.set("messages." + plugin.active_lang + ".broadcast_radio", list);
+                    try {
+                        msg.save(config);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                plugin.reloadConfig();
+                return true;
+            }
+            if(action.equalsIgnoreCase("clearall")){
+
+                File config = new File(plugin.getDataFolder() + File.separator + "config.yml");
+                FileConfiguration msg = YamlConfiguration.loadConfiguration(config);
+
+                List<String> list = new ArrayList<>();
+                msg.set("messages." + plugin.active_lang + ".broadcast_radio", list);
+
+                try {
+                    msg.save(config);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                plugin.reloadConfig();
+                return true;
+            }
+
+            return false; //if target == radio && action != add or clearall
+        }
+
+
+        return false; //if target == config or radio
     }
 }
