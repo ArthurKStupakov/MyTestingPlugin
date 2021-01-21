@@ -14,11 +14,13 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.Inventory;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class Handler implements Listener {
@@ -75,6 +77,14 @@ public class Handler implements Listener {
                 e.printStackTrace();
             }
         }
+
+
+        String privateInventoryName = plugin.getConfig().getString("messages." + plugin.active_lang + ".private_inventory");
+        privateInventoryName = plugin.messageCorrect(privateInventoryName, player.getName()).toUpperCase(Locale.ROOT);
+
+        Inventory privateInventory = Bukkit.createInventory(null, 3 * 9, privateInventoryName);
+        plugin.getPrivateInventoryMap().putIfAbsent(player, privateInventory);
+
         return;
 
     }

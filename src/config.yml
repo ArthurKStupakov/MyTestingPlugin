@@ -17,6 +17,9 @@ messages:
     teleport_item_lore: '&9 Ender-Teleport'
     teleport_item_wall_error: 'The ground is too heavy!'
     chest_setter: 'Take the chest out of your hands, man...'
+    inventory_not_found: 'No inventory found'
+    private_inventory: '{player}`s inventory'
+    overall_inv_title: 'Overall inventory'
     broadcast_radio: []
   ru:
     join:
@@ -24,7 +27,7 @@ messages:
       - '&a {player}, здаров!'
       - '&a Добро пожаловать, {player}!'
     permission_error: 'У тебя нет прав на это!'
-    only_for_players: 'Only for players!'
+    only_for_players: 'Только для игроков!'
     command_done: '&4 Готово!'
     player_offline: '{player} нет в сети'
     configs_reloaded: 'Настройки обновлены.'
@@ -33,4 +36,7 @@ messages:
     teleport_item_lore: '&9 Эндер-телепорт'
     teleport_item_wall_error: 'Там нет для тебя места!'
     chest_setter: 'Чел, убери сундук из рук'
+    inventory_not_found: 'Инвентарь не найден.'
+    private_inventory: 'Инвентарь {player}'
+    overall_inv_title: 'Общий инвентарь'
     broadcast_radio: []

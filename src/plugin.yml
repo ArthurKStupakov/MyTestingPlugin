@@ -16,3 +16,6 @@ commands:
   myplugin:
     description: plugin actions for admin
     usage: enter /myplugin config reset for reset configs
+  inventory:
+    description: show player inventory
+    usage: enter /inventory nick or overall
