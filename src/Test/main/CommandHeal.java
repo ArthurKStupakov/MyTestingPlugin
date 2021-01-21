@@ -11,7 +11,7 @@ public class CommandHeal implements CommandExecutor {
 
     public CommandHeal(MyTestingPlugin myPlugin) {
         plugin = myPlugin;
-    }
+    }  //heal player
 
 
     @Override

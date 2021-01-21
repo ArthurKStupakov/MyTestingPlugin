@@ -12,7 +12,7 @@ public class CommandMyPlugin implements CommandExecutor {
 
     public CommandMyPlugin(MyTestingPlugin myPlugin) {
         plugin = myPlugin;
-    }
+    } //give plugin usage commands
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {

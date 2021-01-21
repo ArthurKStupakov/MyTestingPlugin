@@ -11,7 +11,7 @@ public class CommandPutMeInFire implements CommandExecutor {
     private MyTestingPlugin plugin;
     public CommandPutMeInFire(MyTestingPlugin myPlugin) {
         plugin = myPlugin;
-    }
+    } //give for player chance burn himself
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {

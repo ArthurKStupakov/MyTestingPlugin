@@ -26,7 +26,7 @@ public class EnderTeleportHandler implements Listener {
         void_blocks.add(Material.DANDELION);
         void_blocks.add(Material.POPPY);
         // And so on...
-    }
+    } //make ender-teleport working
 
     @EventHandler
     public void use(PlayerInteractEvent event){

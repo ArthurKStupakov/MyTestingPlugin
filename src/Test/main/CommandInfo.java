@@ -13,7 +13,7 @@ public class CommandInfo implements CommandExecutor {
 
     public CommandInfo(MyTestingPlugin myPlugin) {
         plugin = myPlugin;
-    }
+    } //give player IP address
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {

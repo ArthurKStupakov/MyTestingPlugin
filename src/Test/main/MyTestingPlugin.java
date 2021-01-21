@@ -41,9 +41,6 @@ public class MyTestingPlugin extends JavaPlugin{
             }
         }
 
-
-
-
         //getLogger().info("Enabled");
         log.info("My plugin enabled");
         log.warning("Oh my GOOOOOD!!");
@@ -67,7 +64,7 @@ public class MyTestingPlugin extends JavaPlugin{
         log.info("My plugin disabled");
     }
 
-    private void craft(){
+    private void craft(){ //making new crafts (ender-teleport)
 
         String item_name = messageCorrect(getConfig().getString("messages." + active_lang + ".teleport_item_name"));
         String item_lore = messageCorrect(getConfig().getString("messages." + active_lang + ".teleport_item_lore"));
@@ -89,7 +86,7 @@ public class MyTestingPlugin extends JavaPlugin{
         Bukkit.getServer().addRecipe(shapedRecipe);
     }
 
-    public String messageCorrect(String message){
+    public String messageCorrect(String message){ //is used for format plugin messages
         message = message.replace("&", "\u00a7");
         return message;
     }
